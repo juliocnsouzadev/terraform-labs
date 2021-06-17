@@ -1,6 +1,4 @@
 resource "kubernetes_deployment" "app-deployment" {
-  api_version = "extensions/v1beta1"
-  kind        = "Deployment"
   metadata {
     labels = {
       app = var.app
@@ -12,7 +10,7 @@ resource "kubernetes_deployment" "app-deployment" {
     min_ready_seconds = var.min_ready_seconds
     replicas          = var.replicas
     selector {
-      match_labels {
+      match_labels = {
         app = var.app
       }
     }
@@ -25,7 +23,7 @@ resource "kubernetes_deployment" "app-deployment" {
     }
     template {
       metadata {
-        labels {
+        labels = {
           app = var.app
         }
       }
@@ -43,7 +41,7 @@ resource "kubernetes_deployment" "app-deployment" {
             period_seconds        = 10
           }
           name = var.app
-          ports {
+          port {
             container_port = 8000
             name           = "liveness-port"
           }
@@ -57,11 +55,11 @@ resource "kubernetes_deployment" "app-deployment" {
             period_seconds        = 10
           }
           resources {
-            limits {
+            limits = {
               cpu    = "500m"
               memory = "1024Mi"
             }
-            requests {
+            requests = {
               cpu    = "100m"
               memory = "512Mi"
             }

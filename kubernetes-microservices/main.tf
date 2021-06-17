@@ -7,26 +7,26 @@ terraform {
   }
 }
 module "provider" {
-    source = var.dev_cluster
+    source = "./modules/provider/development"
 }
 
 # deployments
 module "deployment-users" {
-    source = "./microservices/users/deployment"    
+    source = "./modules/microservices/users/deployment"    
 }
 module "deployment-files" {
-    source = "./microservices/users/deployment"    
+    source = "./modules/microservices/users/deployment"    
 }
 
 # services
 module "service-users" {
-  source = "./microservices/users/service"
+  source = "./modules/microservices/users/service"
 }
 module "service-files" {
-  source = "./microservices/files/service"
+  source = "./modules/microservices/files/service"
 }
 
 # ingress
 module "gateway" {
-  source = "./ingress"
+  source = "./modules/ingress"
 }

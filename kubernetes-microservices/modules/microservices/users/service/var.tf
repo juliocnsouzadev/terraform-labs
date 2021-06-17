@@ -14,10 +14,6 @@ variable "namespace" {
   default = "default"
 }
 
-variable "docker-image" {
-  default = "in28min/currency-exchange:0.0.1-RELEASE"
-}
-
 variable "service_type" {
   default = "NodePort"
 }

@@ -1,7 +1,9 @@
 resource "kubernetes_ingress" "ingress-gateway" {
   metadata {
     name        = var.ingress_name
-    annotations = var.ingress_annotations
+    annotations = {
+      "kubernetes.io/ingress.class" = "nginx"
+    }
   }
 
   spec {

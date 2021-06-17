@@ -18,6 +18,3 @@ variable "ingress_name" {
   default = "gateway"
 }
 
-variable "ingress_annotations" {
-  default = "nginx.ingress.kubernetes.io/rewrite-target: /"
-}
