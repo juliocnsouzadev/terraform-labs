@@ -38,7 +38,7 @@ variable "image_pull_policy" {
   default = "IfNotPresent"
 }
 
-variable "docker-image" {
+variable "docker_image" {
   default = "juliocnsouza/microservice:0.0.1"
 }
 

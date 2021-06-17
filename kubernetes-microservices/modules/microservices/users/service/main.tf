@@ -1,8 +1,6 @@
 resource "kubernetes_service" "service" {
-  apiVersion = "v1"
-  kind       = "Service"
   metadata {
-    labels {
+    labels = {
       app = var.app
     }
     name      = var.app
@@ -14,7 +12,7 @@ resource "kubernetes_service" "service" {
       protocol    = "TCP"
       target_port = var.port
     }
-    selector {
+    selector = {
       app = var.app
     }
     session_affinity = "None"
