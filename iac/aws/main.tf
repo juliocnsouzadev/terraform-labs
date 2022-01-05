@@ -36,3 +36,8 @@ resource "aws_route_table" "demo-app-route-table-vcp-01" {
     Name : "${var.env_prefix}-route-table-01"
   }
 }
+
+resource "aws_route_table_association" "demo-app-rtb-assoc-01" {
+  subnet_id      = aws_subnet.demo-app-subnet-01.id
+  route_table_id = aws_route_table.demo-app-route-table-vcp-01.id
+}
