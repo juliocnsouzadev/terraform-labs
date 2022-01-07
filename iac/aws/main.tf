@@ -41,3 +41,30 @@ resource "aws_route_table_association" "demo-app-rtb-assoc-01" {
   subnet_id      = aws_subnet.demo-app-subnet-01.id
   route_table_id = aws_route_table.demo-app-route-table-vcp-01.id
 }
+
+
+resource "aws_default_security_group" "default-demo-app-sg-01" {
+  vpc_id = aws_vpc.demo-app-vpc-01.id
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["${var.my_ip}/32"]
+  }
+  ingress {
+    from_port = 8080
+    to_port = 8080
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    prefix_list_ids = []
+  }
+  tags = {
+    Name : "${var.env_prefix}-deafault-security-group-01"
+  }
+}
