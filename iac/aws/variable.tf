@@ -1,3 +1,11 @@
+variable "env_prefix" {
+  description = "Environment prefix"
+}
+
+variable "my_ip" {
+  description = "My IP address"
+}
+
 variable "aws_access_key" {
   description = "AWS Access key"
 }
@@ -9,10 +17,6 @@ variable "aws_secret_key" {
 variable "aws_region" {
   description = "AWS Region"
   default     = "us-east-1"
-}
-
-variable "env_prefix" {
-  description = "Environment prefix"
 }
 
 variable "vpc_cidr_block" {
