@@ -38,3 +38,8 @@ variable "instance_type" {
   description = "value for instance type"
   type        = string
 }
+
+variable "public_key_location" {
+  description = "value for public key location"
+  type        = string
+}

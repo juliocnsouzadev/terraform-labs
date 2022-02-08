@@ -69,6 +69,12 @@ resource "aws_default_security_group" "default-demo-app-sg-01" {
   }
 }
 
+
+resource "aws_key_pair" "demo-app-key-pair-01" {
+  key_name   = "${var.env_prefix}-key-pair-01"
+  public_key = file("${var.public_key_location}")
+}
+
 resource "aws_instance" "demo-app-instance-01" {
   ami           = var.aws_ami_id
   instance_type = var.instance_type
@@ -77,7 +83,7 @@ resource "aws_instance" "demo-app-instance-01" {
     Name : "${var.env_prefix}-instance-01"
   }
   associate_public_ip_address = true
-  key_name                    = "dev-server-key-pair"
+  key_name                    = aws_key_pair.demo-app-key-pair-01.key_name
   vpc_security_group_ids      = [aws_default_security_group.default-demo-app-sg-01.id]
   availability_zone           = aws_subnet.demo-app-subnet-01.availability_zone
 }
