@@ -77,6 +77,7 @@ resource "aws_instance" "demo-app-instance-01" {
     Name : "${var.env_prefix}-instance-01"
   }
   associate_public_ip_address = true
+  key_name                    = "dev-server-key-pair"
   vpc_security_group_ids      = [aws_default_security_group.default-demo-app-sg-01.id]
   availability_zone           = aws_subnet.demo-app-subnet-01.availability_zone
 }
