@@ -56,3 +56,49 @@ data "local_file" "os" {
   filename = "/etc/os-release"
 }
 ```
+
+## Count
+```
+variable "users" {
+    type = list
+    default = [
+        "user-a",
+        "user-b",
+        "user-c"
+    ]
+}
+variable "content" {
+    default = "password: S3cr3tP@ssw0rd"
+  
+}
+
+```
+```
+resource "local_file" "name" {
+    filename = var.users[count.index]
+    sensitive_content = var.content
+    count = 3
+}
+```
+
+
+## Foreach
+```
+variable "users" {
+    type = list(string)
+    default = [ "/root/user10", "/root/user11", "/root/user12", "/root/user10"]
+}
+variable "content" {
+    default = "password: S3cr3tP@ssw0rd"
+  
+}
+```
+
+```
+resource "local_file" "name" {
+    filename = each.value
+    sensitive_content = var.content
+    for_each = toset(var.users)
+}
+```
+
