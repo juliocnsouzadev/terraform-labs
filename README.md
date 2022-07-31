@@ -23,3 +23,26 @@ terraform destroy
 ```bash
 chocolatey install graphviz
 ```
+
+## Lifecycle
+```
+resource "random_string" "string" {
+    length = 10
+    keepers = {
+        length = 10
+    }
+    lifecycle {
+        create_before_destroy =  true #  a new random string is created first before the old one is destroyed
+    }     
+}
+resource "random_string" "string" {
+    length = 10
+    keepers = {
+        length = 10
+    }
+    lifecycle {
+        prevent_destroy =  true # is not destroyed under any circumstances
+    }     
+}
+
+```
